@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/doctor.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Exam Form</h1>
+      <form method="post" action="/create" id="examForm">
+        <label style="color: brown" for="exam_duration"
+          >Exam Duration (minutes)™:</label
+        >
+        <input
+          type="number"
+          id="exam_duration"
+          name="exam_duration"
+          min="1"
+          required
+        />
+        <label style="color: brown" for="num_questions"
+          >Number of questions✍:</label
+        >
+        <input
+          type="number"
+          id="num_questions"
+          name="num_questions"
+          min="1"
+          required
+        />
+        <div id="questionsContainer"></div>
+        <button type="button" onclick="addQuestion()">Create Exam</button>
+        <button type="submit">Send To Students</button>
+      </form>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+  </body>
+</html>

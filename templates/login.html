@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/all.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+  </head>
+  <body>
+    <form action="{{ url_for('doctor') }}" method="post" class="login">
+      <h1>Log in</h1>
+      <label for="username" class="user">UserName:</label>
+      <input type="text" required placeholder="username" name="username" />
+      <label for="password" class="pass">Password:</label>
+      <input type="password" placeholder="password" name="password" />
+      <button>LOGIN</button>
+      <div class="forget"><a href=""> Forget Your Password ?</a></div>
+      <p class="login-form-copy">Or Login With</p>
+      <div class="social-icons">
+        <ul>
+          <li>
+            <a href="https://www.google.com"
+              ><i class="fa-brands fa-google"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.twitter.com"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <span>Don't Have An Account ?</span>
+      <a href="{{ url_for('register') }}" class="sign-up">Sign Up</a>
+    </form>
+    <script src="{{ url_for('static', filename='js/all.min.js') }}"></script>
+  </body>
+</html>

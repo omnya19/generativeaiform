@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/result.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Results✔</h1>
+      <h2 style="color: crimson">Total :</h2>
+      <p>Your Correct Answers: {{ num_correct_answers }}</p>
+      <p>The Final Score: {{ similarity_score }}%</p>
+      <div>
+        {% if similarity_score >= 100 %}
+        <p>🎉✔ Congratulations! You got a perfect score! ✔🎉</p>
+        {% elif similarity_score >= 60 %}
+        <p>👏 Great job! You did well! 👏</p>
+        {% else %}
+        <p>😕 Keep trying! You'll improve! 😕</p>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

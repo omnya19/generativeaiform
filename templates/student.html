@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/student.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Exam</h1>
+      <p style="color: brown">Start Time: {{ start_time }}</p>
+      <p>🕙 Time Left: <span id="timer" style="color: brown"></span></p>
+  
+      <form method="post" action="/submit_answers" id="examForm">
+        <label for="student_name">Your Name:</label>
+        <input type="text" id="student_name" name="student_name" required>
+  
+        {% for question in questions %}
+        <div class="question-answer-container">
+          <label for="answer_{{ loop.index }}">Question {{ loop.index }}:</label>
+          <h3>{{ question }}</h3>
+          <textarea
+            id="answer_{{ loop.index }}"
+            name="answer_{{ loop.index }}"
+            rows="4"
+            cols="50"
+          ></textarea>
+        </div>
+        {% endfor %}
+  
+        <button type="submit">Submit Answers</button>
+      </form>
+    </div>
+    <script>
+      function startTimer(duration, display) {
+        var timer = duration,
+          minutes,
+          seconds;
+        var autoSubmit = false;
+
+        var timerInterval = setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = minutes + ":" + seconds;
+
+          if (--timer < 0 && !autoSubmit) {
+            autoSubmit = true;
+            document.getElementById("examForm").submit();
+            clearInterval(timerInterval);
+          }
+        }, 1000);
+      }
+      window.onload = function () {
+        var examDuration = parseInt("{{ exam_duration }}") * 60;
+        var display = document.getElementById("timer");
+        startTimer(examDuration, display);
+      };
+    </script>
+  </body>
+</html>
